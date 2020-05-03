@@ -17,6 +17,13 @@ LABEL_CHOICES = (
     ('S', 'secondary'),
     ('D', 'danger')
 )
+LABEL_RATE_CHOICES = (
+    ('R', 'red'),
+    ('BLU', 'blue'),
+    ('YEL', 'yellow'),
+    ('BL', 'black'),
+    ('OR', 'orange')
+)
 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
@@ -39,7 +46,11 @@ class Item(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
+    label = models.CharField(choices=LABEL_CHOICES,
+                             max_length=1, null=True, blank=True)
+    color_label = models.CharField(
+        choices=LABEL_RATE_CHOICES, max_length=10, null=True, blank=True)
+    label_rate = models.CharField(max_length=100, null=True, blank=True)
     slug = models.SlugField()
     description = models.TextField()
     image = models.TextField()

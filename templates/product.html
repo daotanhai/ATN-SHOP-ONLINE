@@ -9,7 +9,7 @@
             <!--Grid column-->
             <div class="col-md-6 mb-4">
 
-                <img src="{{object.image}}" class="img-fluid" alt="">
+                <img src="{{object.image}}" width="450 vw" height="350 vw" class="img-fluid" alt="">
 
             </div>
             <!--Grid column-->
@@ -22,15 +22,19 @@
 
                     <div class="mb-3">
                         <a href="">
-                            <span class="badge purple mr-1">{{ object.get_category_display }}</span>
+                            <span class="badge purple mr-1">{{ object.get_category_display }}</span> {% if object.label_rate == null %}
+                            <span class="badge {{ item.get_color_label_display }} mr-1"></span> {% else %}
+                            <span class="badge {{ item.get_color_label_display }} mr-1">{{object.label_rate}}
+
+                            </span> {% endif %}
                         </a>
                     </div>
 
                     <p class="lead">
                         {% if object.discount_price %}
                         <span class="mr-1">
-                <del>${{ object.price }}</del>
-              </span>
+                            <del>${{ object.price }}</del>
+                        </span>
                         <span>${{ object.discount_price }}</span> {% else %}
                         <span>${{ object.price }}</span> {% endif %}
                     </p>
@@ -44,18 +48,18 @@
                         <!-- Default input -->
                         <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
                         <button class="btn btn-primary btn-md my-0 p" type="submit">
-                Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+                            Add to cart
+                            <i class="fas fa-shopping-cart ml-1"></i>
+                        </button>
 
                     </form> {% endcomment %}
                     <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
-              Add to cart
-              <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
+                        Add to cart
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                    </a>
                     <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
-              Remove from cart
-            </a>
+                        Remove from cart
+                    </a>
 
                 </div>
                 <!--Content-->

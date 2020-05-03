@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block content %}
-<main>
-    <div class="container">
 
+
+<main id="Products">
+    <div class="container">
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
@@ -10,8 +11,8 @@
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <!-- Collapsible content -->
             <div class="collapse navbar-collapse" id="basicExampleNav">
@@ -20,8 +21,8 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">All
-                <span class="sr-only">(current)</span>
-              </a>
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Shirts</a>
@@ -46,91 +47,104 @@
 
         </nav>
         <!--/.Navbar-->
+        <div class="container mt-5" id="Products">
+            <section class="dark-grey-text text-center">
+                <h2 class="font-weight-bold mb-4 pb-2" id="Shirt">GET UP TO 70% OFF 700 STYLES</h2>
+                <div class="row">
+                    {% for item in object_list %}
+                    <div class="col-lg-3 col-md-6 mb-4">
 
-        <!--Section: Products v.3-->
-        <section class="text-center mb-4">
+                        <div class="card card-cascade narrower card-ecommerce">
 
-            <div class="row wow fadeIn">
+                            <div class="view view-cascade overlay">
+                                <img src="{{ item.image }}" class="card-img-top">
+                                <a href="{{ item.get_absolute_url }}">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
 
-                {% for item in object_list %}
-                <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card-body card-body-cascade text-center pb-3">
+                                <a href="" class="grey-text">
+                                    <h5>{{ item.get_category_display }}</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                                        </a>
+                                    </strong> {% if item.label_rate == null %} {%else%}
+                                    <span class="badge badge-pill {{ item.get_label_display }}-color">
+                                        {{item.label_rate}}
+                                    </span> {% endif %}
 
-                    <div class="card">
+                                </h5>
 
-                        <div class="view overlay">
-                            {% comment %} <img src="{{ item.image.url }}" class="card-img-top">{% endcomment %}
 
-                            <a href="{{ item.get_absolute_url }}">
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
 
-                        <div class="card-body text-center">
-                            <a href="" class="grey-text">
-                                <h5>{{ item.get_category_display }}</h5>
-                            </a>
-                            <h5>
-                                <strong>
-                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
-                      <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
-                    </a>
-                  </strong>
-                            </h5>
+                            </div>
 
-                            <h4 class="font-weight-bold blue-text">
-                                <strong>$
-                  {% if item.discount_price %}
-                  {{ item.discount_price }}
-                  {% else %}
-                  {{ item.price }}
-                  {% endif %}
-                  </strong>
-                            </h4>
+                            <div class="card-footer px-1">
+                                <span class="float-left font-weight-bold ">
+                                    <h5 class="font-weight-bold blue-text">
+                                        <strong>$
+                                            {% if item.discount_price %}
+                                            {{ item.discount_price }}
+                                            {% else %}
+                                            {{ item.price }}
+                                            {% endif %}
+                                        </strong>
+                                    </h5>
+                                </span>
+                                <span class="float-right">
+                                    <a href="{{ object.get_add_to_cart_url }}" class="material-tooltip-main"
+                                        data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                        <i class="fas fa-shopping-cart grey-text ml-3"></i>
+                                    </a>
+                                    <a class="material-tooltip-main" data-toggle="tooltip" data-placement="top"
+                                        title="Add to Wishlist">
+                                        <i class="fas fa-heart grey-text ml-3"></i>
+                                    </a>
+                                </span>
+                            </div>
 
                         </div>
 
                     </div>
+                    {% endfor %}
 
-                </div>
-                {% endfor %}
+            </section>
             </div>
 
-        </section>
-        <!--Section: Products v.3-->
+            {% if is_paginated %}
+            <nav class="d-flex justify-content-center wow fadeIn">
+                <ul class="pagination pg-blue">
 
-        <!--Pagination-->
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
-        {% if is_paginated %}
-        <nav class="d-flex justify-content-center wow fadeIn">
-            <ul class="pagination pg-blue">
-
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+                        <span class="sr-only">(current)</span>
                     </a>
-                </li>
-                {% endif %}
+                    </li>
 
-                <li class="page-item active">
-                    <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
-              <span class="sr-only">(current)</span>
-            </a>
-                </li>
-
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-
-    </div>
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
 </main>
+
 {% endblock content %}
