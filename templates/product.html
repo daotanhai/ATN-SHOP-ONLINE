@@ -1,0 +1,122 @@
+{% extends "base.html" %} {% block content %}
+
+<main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <img src="{{object.image}}" class="img-fluid" alt="">
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+
+                <!--Content-->
+                <div class="p-4">
+
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge purple mr-1">{{ object.get_category_display }}</span>
+                        </a>
+                    </div>
+
+                    <p class="lead">
+                        {% if object.discount_price %}
+                        <span class="mr-1">
+                <del>${{ object.price }}</del>
+              </span>
+                        <span>${{ object.discount_price }}</span> {% else %}
+                        <span>${{ object.price }}</span> {% endif %}
+                    </p>
+
+                    <p class="lead font-weight-bold">Description</p>
+
+                    <p>{{ object.description }}</p>
+
+                    {% comment %}
+                    <form class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                        <button class="btn btn-primary btn-md my-0 p" type="submit">
+                Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+                    </form> {% endcomment %}
+                    <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
+              Add to cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+                    <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+              Remove from cart
+            </a>
+
+                </div>
+                <!--Content-->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr>
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+
+                <h4 class="my-4 h4">Men's ASOS DESIGN</h4>
+
+                <p> ASOS DESIGN is your every day and night go-to. No matter who you are, where you’re from and what you’re up to, our brand is here for you, serving up the latest trends and major exclusives – and it also comes in our fit ranges Plus and
+                    Tall. Discover more about ASOS DESIGN now. Created by us, styled by you.</p>
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4">
+
+                <img src="https://images.asos-media.com/products/asos-design-skinny-western-denim-jacket-in-black/12887167-1-black?$n_320w$&wid=317&fit=constrain" class="img-fluid" alt="">
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <img src="https://images.asos-media.com/products/asos-design-muscle-fit-jersey-polo-in-green/11696713-1-junebug?$n_320w$&wid=317&fit=constrain" class="img-fluid" alt="">
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <img src="https://images.asos-media.com/products/asos-design-t-shirt-with-zip-neck-and-contrast-yoke-and-tipping-in-burgundy/13956404-1-portroyale?$n_320w$&wid=317&fit=constrain" class="img-fluid" alt="">
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+</main>
+<!--Main layout-->
+
+{% endblock content %}
