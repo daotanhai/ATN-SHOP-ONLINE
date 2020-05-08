@@ -42,6 +42,7 @@ class UserProfile(models.Model):
 
 
 class Item(models.Model):
+    image = models.TextField()
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
@@ -53,7 +54,6 @@ class Item(models.Model):
     label_rate = models.CharField(max_length=100, null=True, blank=True)
     slug = models.SlugField()
     description = models.TextField()
-    image = models.TextField()
 
     def __str__(self):
         return self.title
